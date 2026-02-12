@@ -1,10 +1,15 @@
-const { Sequelize } = require('sequelize');
-const path = require('path');
+import { Sequelize } from 'sequelize';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const isTestEnv = process.env.NODE_ENV === 'test' || process.env.VITEST === 'true';
 
 const sequelize = new Sequelize({
   dialect: 'sqlite',
-  storage: path.join(__dirname, 'bancoteste.sqlite'),
-  logging: false // remove logs no console
+  storage: isTestEnv ? ':memory:' : path.join(__dirname, 'bancoteste.sqlite'),
+  logging: false,
 });
 
-module.exports = sequelize;
+export default sequelize;
