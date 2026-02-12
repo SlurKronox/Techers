@@ -1,16 +1,24 @@
-# CI
+ï»¿# CI
 
-## Workflow
-Arquivo: `.github/workflows/ci.yml`
+## Workflows
+- `.github/workflows/ci.yml`
+- `.github/workflows/security.yml`
 
-Jobs:
+## CI Jobs
 - `lint`
 - `test`
 - `build`
 
+## Security Jobs
+- `dependency-review` (PR)
+- `codeql` (push, PR, schedule)
+
 ## Ambiente
 - Node 20
-- Instalação com `npm ci`
+- Instalacao com `npm ci`
+
+## Criterio de aprovacao
+Mudancas so devem ser mescladas com CI e Security aprovados.
 
 ## English Summary
-CI ensures lint, test, and build checks are always green.
+CI ensures lint, test, and build checks; Security workflow adds dependency review and CodeQL.
